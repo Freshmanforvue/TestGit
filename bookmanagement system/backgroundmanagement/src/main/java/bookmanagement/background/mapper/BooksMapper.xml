@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookmanagement.background.mapper.BooksMapper">
+    <insert id="insertBooks" parameterType="books">
+		insert into books(bookname,author,price) values(#{bookname},#{author},#{price})
+	</insert>
+    <select id="selectAllBooks" resultType="books" parameterType="map">
+     select id,bookname,author,price from books limit #{pageStart},#{pageSize}
+   </select>
+    <delete id="deleteBook" parameterType="int">
+delete from books where id = #{0}
+</delete>
+    <select id="selectBooksById" resultType="books" parameterType="int">
+select id,bookname,author,price from books where id = #{value}
+</select>
+    <update id="updateBook" parameterType="books">
+update books set bookname=#{bookname} ,author=#{author} ,price=#{price} where id=#{id}
+</update>
+    <select id="test" resultType="books">
+    select id,bookname,author,price from books
+</select>
+</mapper>
